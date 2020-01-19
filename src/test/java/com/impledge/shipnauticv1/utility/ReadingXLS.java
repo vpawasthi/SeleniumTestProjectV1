@@ -9,7 +9,9 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook; 
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+
   
   public class ReadingXLS { 
 	  
@@ -26,20 +28,16 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 	  
 	  sFile = sTEST_DATA_FILE_PATH+"demoWorkSheet.xlsx";
 	  
-	  ReadingXLS rx= new ReadingXLS(); rx.readWholexls(sFile);
-	  
-	  
+	  readWholexls(sFile);
+	  	  
 	  // rx.getCellValue(sFile, 1, 2);
-	  
-	  
-	  System.out.println("Column Value :  "+rx.getCellValue(sFile, 1, 2));
-	  
+	  	  
+	  System.out.println("Column Value :  "+getCellValue(sFile, 1, 2));
 	  
 	  
 	  }
 	  
-	 
-	  
+	 	  
 	  
 	  public static String getCellValue(String sFile,int iRowIndex, int iColIndex ) throws Exception {
 		  
@@ -52,6 +50,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 		   
 		   while (rowIterator.hasNext()) { 
 				row = (XSSFRow) rowIterator.next(); 
+				//Iterator < Cell > cellIterator = row.cellIterator();
 				Iterator < Cell > cellIterator = row.cellIterator();
 					
 				while ( cellIterator.hasNext()) { 
@@ -94,7 +93,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 	  
 	  
 	  
-	  public void readWholexls (String sFile) throws IOException {
+	  public static void readWholexls (String sFile) throws IOException {
 		  
 		   fis = new FileInputStream( new File(sFile));
 		   workbook = new XSSFWorkbook(fis); 

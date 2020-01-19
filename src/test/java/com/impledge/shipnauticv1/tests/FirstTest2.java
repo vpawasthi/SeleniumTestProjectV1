@@ -45,7 +45,7 @@ public class FirstTest2 extends BaseTest {
 			 	 test.log(Status.PASS, "login passed");
 			 	 Thread.sleep(20000);
 			 	 
-			 	 Assert.assertEquals(LoginPage.getSubAccountRoleName(), "amitqaMain - Admin");
+			 	 Assert.assertEquals(LoginPage.getSubAccountRoleName(), "amitqaMain - Admin1");
 			    
 	    	 	 System.out.println("Login in First Test2 Case");
 			 

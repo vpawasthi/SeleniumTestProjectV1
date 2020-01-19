@@ -25,7 +25,7 @@ public class readingProperty {
 			            prop.load(input);
 		
 			            // get the property value and print it out
-			            System.out.println(prop.getProperty("browserDriver.Chrome"));
+			            System.out.println(prop.getProperty("browserDriver.Browser"));
 			            
 			            return sPropertyValue= prop.getProperty(propertyKey);
 			

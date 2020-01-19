@@ -23,7 +23,9 @@ import com.impledge.shipnauticv1.utility.readingProperty;
 
 public class BaseTest {
 
-	private static String sBaseURL = "https://lcc-qa.air-quest.com/signin";
+	public static String sBaseURL = "https://lcc-qa.air-quest.com/signin";
+	
+	public static String testDataExcelFileName="demoWorkSheet.xlsx";
 	
 	public static ExtentHtmlReporter htmlReporter;
 	public static ExtentReports extent;
