@@ -93,7 +93,8 @@ public class HomePO {
 		{
 			LoginPO LoginPage = new LoginPO(driver); 
 			LoginPage.loginLCC(BaseTest.sUserName, BaseTest.sPassword);
-			
+			return true;
+			//e.printStackTrace();
 		}
 		return false;
 	}

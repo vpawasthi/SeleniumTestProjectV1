@@ -54,7 +54,7 @@ public class ParcelShipmentTest extends BaseTest {
 		    * Modification Date:dd/mm/yyyy 
 		    */
 				 
-				     @Ignore 
+				     @Ignore
 			     	 @Test (priority =1)
 					public void TestDomesticParcelShipmentviaData() {
 					
@@ -83,7 +83,7 @@ public class ParcelShipmentTest extends BaseTest {
 		   			  	else
 						  LoginPage.loginLCC(sUserName,sPassword);
 				  
-		              XLSXUtility.setExcelFileSheet("Shipments.xlsx","DomParclShipment");
+		              XLSXUtility.setExcelFileSheet("Shipments1.xlsx","DomParclShipment");
 		   			  
 		      		   int iTotalRowCount = XLSXUtility.getTotalRowNumber()+1;
 		      		   
@@ -126,6 +126,10 @@ public class ParcelShipmentTest extends BaseTest {
 					             HomePage.clickCreateNewBtn();
 					             OrderPage.selectSearchName(sSearchContactName);
 								 OrderPage.clickShipToAddressSave();
+								 
+								 WebDriverWait wait = new WebDriverWait(driver,20);
+									wait.until(ExpectedConditions.visibilityOfElementLocated(OrderPage.orderID));
+									
 								 ParcelShipmentPage.selectPackageType(sPackageName);
 					             ParcelShipmentPage.setTotalShipmentValue(sTotalValue);
 					             if (sSignature!= "" )
@@ -284,7 +288,7 @@ public class ParcelShipmentTest extends BaseTest {
 				  else
 					  LoginPage.loginLCC(sUserName,sPassword);
 	  		 	
-	  		  XLSXUtility.setExcelFileSheet("Shipments.xlsx","IntlParclShipment");
+	  		  XLSXUtility.setExcelFileSheet("Shipments1.xlsx","IntlParclShipment");
    			  
      		   int iTotalRowCount = XLSXUtility.getTotalRowNumber()+1;
      		   
@@ -338,7 +342,8 @@ public class ParcelShipmentTest extends BaseTest {
 				
 						 WebDriverWait wait = new WebDriverWait(driver,20);
 						 wait.until(ExpectedConditions.visibilityOfElementLocated(OrderPage.orderID));
-						 
+					
+							
 						 OrderPage.selectSearchedItem(sSearchedItem, sQuantity, sLicenseNo, sSerialNo);
 						 
 						 
@@ -385,14 +390,11 @@ public class ParcelShipmentTest extends BaseTest {
 		             String sTrackingID = x.substring(0, iTrackingIDIndex);
 		             
 		             System.out.println("sTrackingID: "+sTrackingID);
-		             
-		             XLSXUtility.setCellData(sTrackingID, rownum, 26);
-		             
+
 		             String sOrderId = String.valueOf(OrderPage.getOrderID()).substring(8, 12);
-		             
+
+		             XLSXUtility.setCellData(sTrackingID, rownum, 26);
 		             XLSXUtility.setCellData(sOrderId, rownum, 27);
-		             
-		           
 		             
 		             Boolean actual = x.endsWith("- PreTransit");
 		             
