@@ -4,6 +4,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -81,7 +83,7 @@ public class OrderTest extends BaseTest {
 	              Thread.sleep(7000);
 	              HomePage.clickCreateNewBtn();
  
-	              XLSXUtility.setExcelFileSheet("Shipments.xlsx","DomesticOrder");
+	              XLSXUtility.setExcelFileSheet("Order.xlsx","DomesticOrder");
 				  
 	   		      int iTotalRowCount = XLSXUtility.getTotalRowNumber()+1;
 	   		   
@@ -97,6 +99,8 @@ public class OrderTest extends BaseTest {
 	         		
 	         		OrderPage.selectSearchName(sSearchContactName);
 					OrderPage.clickShipToAddressSave();
+					WebDriverWait wait = new WebDriverWait(driver,20);
+					wait.until(ExpectedConditions.visibilityOfElementLocated(OrderPage.orderID));
 					
 					test.log(Status.INFO,"Created Order's Order id: "+ OrderPage.getOrderID());
 					
@@ -159,7 +163,7 @@ public class OrderTest extends BaseTest {
 		              Thread.sleep(7000);
 		              HomePage.clickCreateNewBtn();
 	 
-		              XLSXUtility.setExcelFileSheet("Shipments.xlsx","IntlOrder");
+		              XLSXUtility.setExcelFileSheet("Order.xlsx","IntlOrder");
 					  
 		   		      int iTotalRowCount = XLSXUtility.getTotalRowNumber()+1;
 		   		   
@@ -175,6 +179,9 @@ public class OrderTest extends BaseTest {
 		         		
 		         		OrderPage.selectSearchName(sSearchContactName);
 						OrderPage.clickShipToAddressSave();
+						
+						WebDriverWait wait = new WebDriverWait(driver,20);
+						wait.until(ExpectedConditions.visibilityOfElementLocated(OrderPage.orderID));
 						
 						test.log(Status.INFO,"Created Order's Order id: "+ OrderPage.getOrderID());
 						

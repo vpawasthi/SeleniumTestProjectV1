@@ -37,7 +37,7 @@ public class OrderPO {
 	 */
 	    //*************************Middle Panel ***************************************
 
-	   public By orderID= By.xpath("//app-order-detail//span[contains(text(),'Order')]");
+	   public By orderID= By.xpath("//app-order-detail//span[contains(text(),'Order -')]");
 	    
         //From
 	    
