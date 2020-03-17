@@ -186,7 +186,7 @@ public class ProductTest extends BaseTest{
 	public void TestCreateProductwithVaraintCountryTestData() {
     	 int iTotalRowCount;
 		 int rownum;
-	       String sProdName="", sProdDescription;
+	       String sProdName, sProdDescription;
            	
            	String sVarName, sVarDescp, sSku, sModelNo, sCountryCode, sCurrencyCode, sListPrice, sWeightUnit,
            			sNetWeight, sGrossWeight, sDimUnit, sLength, sWidth, sHeight;

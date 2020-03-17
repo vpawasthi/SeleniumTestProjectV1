@@ -2,15 +2,24 @@
   
 <suite name="Master Suite" verbose="1" >
   
-    <test name="Functional Test 1">
+    <test name="Functional Test Product ">
    	 	<classes>
-    	    <class name="com.impledge.shipnauticv1.tests.FirstTest"/>
-        	<class name="com.impledge.shipnauticv1.tests.FirstTest2"/>
-    	</classes>
+    	    <class name="com.impledge.shipnauticv1.tests.ProductTest"/>
+       	</classes>
     </test>
-    <test name="Functional Test 2 ">
+    <test name="Functional Test Contact ">
     	<classes>
-        	 <class name="com.impledge.shipnauticv1.tests.FirstTest3"/>
+        	 <class name="com.impledge.shipnauticv1.tests.ContactTest"/>
+    	</classes>
+  	</test>
+  	<test name="Functional Test Order ">
+    	<classes>
+        	 <class name="com.impledge.shipnauticv1.tests.OrderTest"/>
+    	</classes>
+  	</test>
+  	<test name="Functional Test Parcel Shipment ">
+    	<classes>
+        	 <class name="com.impledge.shipnauticv1.tests.ParcelShipmentTest"/>
     	</classes>
   	</test>
 </suite>

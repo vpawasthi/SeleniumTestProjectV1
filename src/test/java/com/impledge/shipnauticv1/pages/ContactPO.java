@@ -9,6 +9,8 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ContactPO {
 	
@@ -57,7 +59,7 @@ public class ContactPO {
     By countrySel= By.cssSelector("mat-select[formcontrolname='country']"); 
     
     By address1Txt= By.cssSelector("input[formcontrolname='address1']"); 
-    By address2Txt= By.cssSelector("input[formcontrolname='address2']"); 
+    By address2Txt= By.cssSelector("input[formcontrolname='address2']");
     By address3Txt= By.cssSelector("input[formcontrolname='address3']"); 
     By cityTxt= By.cssSelector("input[formcontrolname='city']"); 
     
@@ -311,17 +313,20 @@ public class ContactPO {
 		this.setAddress2(sAddress2Input);
 		this.setAddress3(sAddress3Input);
 		this.setCity(sCity);
-		this.selectAddressState(sStateCodeORStateName);
-		this.setZip(sZip);
 		this.setContactAddressName(sContactName);
 		this.setCompanyName(sCompanyName);
 		this.setPhoneNumber(sPhoneNo);
 		this.setFaxNumber(sFaxNo);
 		this.setEmailId(sEmail);
+		this.scrollIntoView(this.zipTxt, "DOWN");
+		this.selectAddressState(sStateCodeORStateName);
+		this.setZip(sZip);
 		this.setAddressNotes(sAddNotes);
 		this.selectResidentialToggle(sClick);
 		this.ClickAddressSaveBtn();
-		Thread.sleep(10000);
+		//Thread.sleep(10000);
+		WebDriverWait wait = new  WebDriverWait(driver,20);
+		wait.until(ExpectedConditions.elementToBeClickable(this.addressNameSp)).click();
 		
 		
 	}

@@ -2,8 +2,13 @@ package com.impledge.shipnauticv1.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.impledge.shipnauticv1.tests.BaseTest;
 
 public class HomePO {
 	
@@ -30,12 +35,23 @@ public class HomePO {
 	 By createNewBtn  = By.xpath("//button/span/mat-icon[contains(text(),'add')]");
 	 
 	 By searchHeaderText = By.xpath("//app-header/mat-toolbar/mat-form-field//div[@class='mat-form-field-infix']/input");
+	 
+	 By progressBar = By.xpath("//app-header/ng-progress/div[@class='ng-progress-bar ng-star-inserted']");
 	
 	  public HomePO(WebDriver driver) {
    	 
    	   this.driver=driver;
       }
    
+	  
+	  public void waitProgressBarComplete() {
+		  
+		  
+		  WebDriverWait wait = new WebDriverWait(driver,20);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(progressBar));
+		  
+	  }
+	  
 	  public String getSubAccountRoleName() {
 	    	 return driver.findElement(labelSubAccountRole).getText();
 	    	 
@@ -67,10 +83,19 @@ public class HomePO {
 
 	public boolean isLoggedInLCC() {
 
-		if (driver.findElement(homeHeaderBtn).isDisplayed() == true)
-			return true;
-		else
-			return false;
+		try {
+			
+			if (driver.findElement(homeHeaderBtn).isDisplayed() == true)
+				return true;
+			
+		}
+		catch (NoSuchElementException e )
+		{
+			LoginPO LoginPage = new LoginPO(driver); 
+			LoginPage.loginLCC(BaseTest.sUserName, BaseTest.sPassword);
+			
+		}
+		return false;
 	}
 	
 	public void clickCreateNewBtn() {

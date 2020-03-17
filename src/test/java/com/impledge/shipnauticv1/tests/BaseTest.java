@@ -1,5 +1,7 @@
 package com.impledge.shipnauticv1.tests;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -25,7 +27,13 @@ public class BaseTest {
 
 	public static String sBaseURL = "https://lcc-qa.air-quest.com/signin";
 	
-	public static String testDataExcelFileName="demoWorkSheet.xlsx";
+	//public static String testDataExcelFileName="demoWorkSheet.xlsx";
+//	public static String testDataExcelFileName="ParcelShipmentTC.xlsx";
+//	public static String testDataExcelFileName;
+
+	public static String sUserName="lccautomation@mailinator.com";
+	public static String sPassword="Password1";
+	
 	
 	public static ExtentHtmlReporter htmlReporter;
 	public static ExtentReports extent;
@@ -92,8 +100,11 @@ public class BaseTest {
 		       driver=new ChromeDriver();
 		  }
 		  		 
-		  driver.get(sBaseURL);
+		  driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		  driver.manage().window().maximize();
+	
+		  driver.get(sBaseURL);
+	
 		  return driver;
 	
 	}

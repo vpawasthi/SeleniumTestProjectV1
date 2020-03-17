@@ -16,7 +16,7 @@ import org.openqa.selenium.Platform;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 
 
-import static com.impledge.shipnauticv1.tests.BaseTest.testDataExcelFileName;
+//import static com.impledge.shipnauticv1.tests.BaseTest.testDataExcelFileName;
 
   
   public class XLSXUtility { 
@@ -33,7 +33,7 @@ import static com.impledge.shipnauticv1.tests.BaseTest.testDataExcelFileName;
 	    public static String testDataExcelPath = null;
 	    
 	    //Excels Testdata File Name
-	    //public static String testDataExcelFileName;
+	    public static String testDataExcelFileName=null;
 	 
 	    //Excel WorkBook
 	    private static XSSFWorkbook excelWBook;
@@ -94,7 +94,7 @@ import static com.impledge.shipnauticv1.tests.BaseTest.testDataExcelFileName;
 	    }
 	    
 	 
-	    // This method has two parameters: "Test data excel file name" and "Excel sheet name"
+	   
 	    // It creates FileInputStream and set excel file and excel sheet to excelWBook and excelWSheet variables.
 	    public static void setExcelFileSheet(String sheetName) {
 	        //MAC or Windows Selection for excel path
@@ -119,6 +119,34 @@ import static com.impledge.shipnauticv1.tests.BaseTest.testDataExcelFileName;
 	        }
 	    }
 	 
+	    // This method has two parameters: "Test data excel file name" and "Excel sheet name"
+	    public static void setExcelFileSheet(String sExcelFileName, String sheetName) {
+	        //MAC or Windows Selection for excel path
+	        if (Platform.getCurrent().toString().equalsIgnoreCase("MAC")) {
+	            testDataExcelPath = currentDir + "//src//test//java//resources//";
+	        } else if (Platform.getCurrent().toString().contains("WIN")) {
+	            //testDataExcelPath = currentDir + "\\src\\test\\java\\resources\\";
+	        	testDataExcelPath = currentDir+"\\src\\test\\java\\com\\impledge\\shipnauticv1\\testdata\\";
+	            
+	        }
+	        try {
+	            // Open the Excel file
+	        	testDataExcelFileName=sExcelFileName;
+	            FileInputStream ExcelFile = new FileInputStream(testDataExcelPath + testDataExcelFileName);
+	            excelWBook = new XSSFWorkbook(ExcelFile);
+	            excelspreadsheet = excelWBook.getSheet(sheetName);
+	        } catch (Exception e) {
+	            try {
+	                throw (e);
+	            } catch (IOException e1) {
+	                e1.printStackTrace();
+	            }
+	        }
+	    }
+
+	    
+	    
+	    
 	    //This method reads the test data from the Excel cell.
 	    //We are passing row number and column number as parameters.
 	    public static String getCellData(int RowNum, int ColNum) {
@@ -158,6 +186,7 @@ import static com.impledge.shipnauticv1.tests.BaseTest.testDataExcelFileName;
 	            excelWBook.write(fileOut);
 	            fileOut.flush();
 	            fileOut.close();
+	        //    excelWBook.close();  // added for workbook closing
 	        } catch (Exception e) {
 	            try {
 	                throw (e);
@@ -200,6 +229,9 @@ import static com.impledge.shipnauticv1.tests.BaseTest.testDataExcelFileName;
 							case _NONE:
 								//System.out.print( cell.getStringCellValue() + " \t\t " ); 
 								columnData = cell.getStringCellValue();
+								break;
+							case BOOLEAN:
+								columnData = Boolean.toString(cell.getBooleanCellValue());
 								break;
 							default:
 								break; 
